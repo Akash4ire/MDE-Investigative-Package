@@ -1,0 +1,66 @@
+Folder	Description
+Autoruns	Contains a set of files that each represent the content of the registry of a known auto start entry point (ASEP) to help identify attacker's persistency on the device.
+
+NOTE: If the registry key is not found, the file will contain the following message: "ERROR: The system was unable to find the specified registry key or value."
+Installed programs	This .CSV file contains the list of installed programs that can help identify what is currently installed on the device. For more information, see Win32_Product class.
++++++++++++++++++++++
+Network connections	This folder contains a set of data points related to the connectivity information that can help in identifying connectivity to suspicious URLs, attacker's command and control (C&C) infrastructure, any lateral movement, or remote connections.
+
+ActiveNetConnections.txt: Displays protocol statistics and current TCP/IP network connections. Provides the ability to look for suspicious connectivity made by a process.
+
+Arp.txt: Displays the current address resolution protocol (ARP) cache tables for all interfaces. ARP cache can reveal other hosts on a network that have been compromised or suspicious systems on the network that might have been used to run an internal attack.
+DnsCache.txt: Displays the contents of the DNS client resolver cache, which includes both entries preloaded from the local Hosts file and any recently obtained resource records for name queries resolved by the computer. This can help in identifying suspicious connections.
+IpConfig.txt: Displays the full TCP/IP configuration for all adapters. Adapters can represent physical interfaces, such as installed network adapters, or logical interfaces, such as dial-up connections.
+
+FirewallExecutionLog.txt and pfirewall.log
+NOTE: The pfirewall.log file must exist in %windir%\system32\logfiles\firewall\pfirewall.log, so it will be included in the investigation package. For more information on creating the firewall log file, see Configure the Windows Defender Firewall with Advanced Security Log
+Prefetch files	Windows Prefetch files are designed to speed up the application startup process. It can be used to track all the files recently used in the system and find traces for applications that might have been deleted but can still be found in the prefetch file list.
++++++++++++++++++++++
+
+Prefetch folder: Contains a copy of the prefetch files from %SystemRoot%\Prefetch. NOTE: It is suggested to download a prefetch file viewer to view the prefetch files.
+PrefetchFilesList.txt: Contains the list of all the copied files that can be used to track if there were any copy failures to the prefetch folder.
++++++++++++++++++++++
+
+Processes	Contains a .CSV file listing the running processes and provides the ability to identify current processes running on the device. This can be useful when identifying a suspicious process and its state.
+Scheduled tasks	Contains a .CSV file listing the scheduled tasks, which can be used to identify routines performed automatically on a chosen device to look for suspicious code that was set to run automatically.
++++++++++++++++++++++
+
+Security event log	Contains the security event log, which contains records of login or logout activity, or other security-related events specified by the system's audit policy.
+
+NOTE: Open the event log file using Event viewer.
++++++++++++++++++++++
+
+Services	Contains a .CSV file that lists services and their states.
++++++++++++++++++++++
+
+Windows Server Message Block (SMB) sessions	Lists shared access to files, printers, and serial ports and miscellaneous communications between nodes on a network. This can help identify data exfiltration or lateral movement.
+
+Contains files for SMBInboundSessions and SMBOutboundSession.
+
+NOTE: If there are no sessions (inbound or outbound), you'll get a text file that tells you that there are no SMB sessions found.
++++++++++++++++++++++
+
+System Information	Contains a SystemInformation.txt file that lists system information such as OS version and network cards.
++++++++++++++++++++++
+
+Temp Directories	Contains a set of text files that lists the files located in %Temp% for every user in the system.
+
+This can help to track suspicious files that an attacker may have dropped on the system.
+
+NOTE: If the file contains the following message: "The system cannot find the path specified", it means that there is no temp directory for this user, and might be because the user didn't log in to the system.
++++++++++++++++++++++
+
+Users and Groups	Provides a list of files that each represent a group and its members.
+WdSupportLogs	Provides the MpCmdRunLog.txt and MPSupportFiles.cab
+
+NOTE: This folder will only be created on Windows 10, version 1709 or later with February 2020 update rollup or more recent installed:
+Win10 1709 (RS3) Build 16299.1717: KB4537816
+Win10 1803 (RS4) Build 17134.1345: KB4537795
+Win10 1809 (RS5) Build 17763.1075: KB4537818
+Win10 1903/1909 (19h1/19h2) Builds 18362.693 and 18363.693: KB4535996
++++++++++++++++++++++
+
+CollectionSummaryReport.xls	This file is a summary of the investigation package collection, it contains the list of data points, the command used to extract the data, the execution status, and the error code if there is failure. You can use this report to track if the package includes all the expected data and identify if there were any errors.
++++++++++++++++++++++
+
+
